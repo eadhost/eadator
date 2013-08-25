@@ -1,0 +1,15 @@
+<ead>
+  <eadheader>
+    <eadid/>
+    <filedesc>
+      <titlestmt> 
+        <titleproper/>
+      </titlestmt> 
+    </filedesc>
+  </eadheader>
+  <archdesc level="collection">
+    <did>
+      <unittitle/>
+    </did>
+  </archdesc>
+</ead>

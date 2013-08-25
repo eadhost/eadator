@@ -1,0 +1,15 @@
+<ead xmlns="urn:isbn:1-931666-22-9">
+  <eadheader>
+    <eadid/>
+    <filedesc>
+      <titlestmt> 
+        <titleproper/>
+      </titlestmt> 
+    </filedesc>
+  </eadheader>
+  <archdesc level="collection">
+    <did>
+      <unittitle/>
+    </did>
+  </archdesc>
+</ead>
