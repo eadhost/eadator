@@ -6,7 +6,6 @@ except ImportError:
     import unittest
 import argparse
 from pprint import pprint as pp
-import StringIO
 
 class TestEadator(unittest.TestCase):
     def test_eadator(self):
