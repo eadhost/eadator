@@ -6,14 +6,29 @@
 import sys
 import argparse
 from lxml import etree
+from pprint import pprint as pp
 
 def main(argv=None):
 
     parser = argparse.ArgumentParser( description='EAD validator')
-    parser.add_argument('eadfile', nargs=1, help="EAD XML file to check" )
+    parser.add_argument('eadfile', nargs=1, help="EAD XML file to check",
+                        type=argparse.FileType('r'))
+    parser.add_argument('--dtd', default="./ents/ead.dtd", required=False, )
+    parser.add_argument('--xsd', default="./ents/ead.xsd", required=False, )
 
     if argv is None:
         argv = parser.parse_args()
+
+    eadfile = etree.parse(argv.eadfile[0])
+
+    dtd = etree.DTD(argv.dtd)
+    dtd_valid = dtd.validate(eadfile)
+
+    xsd = etree.XMLSchema(etree.parse(argv.xsd))
+    xsd_valid = xsd.validate(eadfile)
+
+    if not(dtd_valid or xsd_valid):
+        sys.exit(1)
 
 # main() idiom for importing into REPL for debugging 
 if __name__ == "__main__":
