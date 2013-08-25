@@ -1,5 +1,5 @@
 #!/usr/bin/env python
--*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """ eadator
     try DTD and XSD validation for EAD2002, support EAD3 as well later
 """
