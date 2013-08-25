@@ -28,16 +28,16 @@ def main(argv=None):
 
     ead2002ns = eadfile.xpath("//*[namespace-uri()='urn:isbn:1-931666-22-9']")
 
+    validator = None
+
     if not ead2002ns:		# looks like DTD style
-        dtd = etree.DTD(argv.dtd)
-        if not dtd.validate(eadfile):
-            pp(dtd.error_log)
-            exit(1)
+        validator = etree.DTD(argv.dtd)
     else:			# looks like XSD style
-        xsd = etree.XMLSchema(etree.parse(argv.xsd))
-        if not xsd.validate(eadfile):
-            pp(xsd.error_log)
-            exit(1)
+        validator = etree.XMLSchema(etree.parse(argv.xsd))
+
+    if not validator.validate(eadfile):
+        pp(validator.error_log)
+        exit(1)
 
 # main() idiom for importing into REPL for debugging 
 if __name__ == "__main__":
