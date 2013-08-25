@@ -6,7 +6,7 @@ setup(
 
     # Project uses reStructuredText, so ensure that the docutils get
     # installed or upgraded on the target machine
-    install_requires = ['lxml'],
+    install_requires = ['lxml', 'argparse'],
 
     package_data = {
         # If any package contains *.txt or *.rst files, include them:
