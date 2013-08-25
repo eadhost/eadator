@@ -14,8 +14,8 @@ class TestEadator(unittest.TestCase):
         parser = argparse.ArgumentParser( description='EAD validator')
         parser.add_argument('eadfile', nargs=1, help="EAD XML file to check",
                             type=argparse.FileType('r'))
-        parser.add_argument('--dtd', default="{0}/ents/ead.dtd".format(lib_folder), required=False, )
-        parser.add_argument('--xsd', default="{0}/ents/ead.xsd".format(lib_folder), required=False, )
+        parser.add_argument('--dtd', default="%s/ents/ead.dtd" % lib_folder, required=False, )
+        parser.add_argument('--xsd', default="%s/ents/ead.xsd" % lib_folder, required=False, )
 
         # test valid instances
         eadator.main(parser.parse_args([os.path.join(cmd_folder,'test-dtd-valid.xml')]))

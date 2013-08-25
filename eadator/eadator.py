@@ -18,8 +18,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser( description='EAD validator')
     parser.add_argument('eadfile', nargs=1, help="EAD XML file to check",
                         type=argparse.FileType('r'))
-    parser.add_argument('--dtd', default="{0}/ents/ead.dtd".format(cmd_folder), required=False, )
-    parser.add_argument('--xsd', default="{0}/ents/ead.xsd".format(cmd_folder), required=False, )
+    parser.add_argument('--dtd', default="%s/ents/ead.dtd" % cmd_folder, required=False, )
+    parser.add_argument('--xsd', default="%s/ents/ead.xsd" % cmd_folder, required=False, )
 
     if argv is None:
         argv = parser.parse_args()
