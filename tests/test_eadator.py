@@ -1,3 +1,4 @@
+-*- coding: utf-8 -*-
 import os, inspect
 from eadator import eadator
 try:
