@@ -3,6 +3,8 @@ eadator
 
 EAD2002 (DTD or XSD) universal validator
 
+[![Build Status](https://travis-ci.org/eadhost/eadator.png)](https://travis-ci.org/eadhost/eadator) tested on python 2.5, 2.6, 2.7, 3.2, 3.3, pypy
+
 EAD2002 has a DTD version and an XSD version which are not compatible.  Firstly, they are in
 different namespaces.  The DTD version is in the default xml namespace, and the XSD 
 version is in {urn:isbn:1-931666-22-9}.  There are other minor differences in namespaces
@@ -11,9 +13,6 @@ and camel case.
 This utility performs a universial EAD2002 validation.  It exits 0/success with no output if the 
 file is a valid EAD2002.  It exits 1/failure with relevent validation error messages if the file
 is not valid with respect to its intended type (XSD or DTD).
-
-[![Build Status](https://travis-ci.org/eadhost/eadator.png)](https://travis-ci.org/eadhost/eadator)
-
 
 ```
 pip install https://github.com/eadhost/eadator/zipball/master
