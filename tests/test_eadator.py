@@ -1,6 +1,9 @@
 import os, inspect
 from eadator import eadator
-import unittest
+try:
+    import unittest2 as unittest
+except ImportError:
+    import unittest
 import argparse
 from pprint import pprint as pp
 import StringIO
@@ -20,10 +23,8 @@ class TestEadator(unittest.TestCase):
         eadator.main(parser.parse_args([os.path.join(cmd_folder,'test-xsd-valid.xml')]))
 
         # test invalid instances
-        with self.assertRaises(SystemExit):
-            eadator.main(parser.parse_args([os.path.join(cmd_folder,'test-dtd-invalid.xml')]))
-        with self.assertRaises(SystemExit):
-            eadator.main(parser.parse_args([os.path.join(cmd_folder,'test-dtd-invalid.xml')]))
+        self.assertRaises(SystemExit, eadator.main, parser.parse_args([os.path.join(cmd_folder,'test-dtd-invalid.xml')]))
+        self.assertRaises(SystemExit, eadator.main, parser.parse_args([os.path.join(cmd_folder,'test-dtd-invalid.xml')]))
 
 
 if __name__ == '__main__':
