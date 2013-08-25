@@ -3,6 +3,8 @@ eadator
 
 EAD2002 (DTD or XSD) validator
 
+[![Build Status](https://travis-ci.org/eadhost/eadator.png)](https://travis-ci.org/eadhost/eadator)
+
 ```
 usage: eadator [-h] [--dtd DTD] [--xsd XSD] eadfile
 
