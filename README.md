@@ -6,11 +6,11 @@ EAD2002 (DTD or XSD) universal validator
 [![Build Status](https://travis-ci.org/eadhost/eadator.png)](https://travis-ci.org/eadhost/eadator) tested on python 2.5, 2.6, 2.7, 3.2, 3.3, pypy
 
 ```
-pip install https://github.com/eadhost/eadator/zipball/master
+pip install eadator
 ```
 or
 ```
-easy_install https://github.com/eadhost/eadator/zipball/master
+easy_install eadator
 ```
 
 Requires `libxml2` for `lxml` and validation.  
