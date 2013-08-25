@@ -28,4 +28,5 @@ setup(
             'eadator = eadator.eadator:main',
         ]
     },
+    test_suite = "tests.test_eadator"
 )
