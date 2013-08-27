@@ -21,6 +21,8 @@ class TestEadator(unittest.TestCase):
         # test valid instances
         eadator.main(parser.parse_args([os.path.join(cmd_folder,'test-dtd-valid.xml')]))
         eadator.main(parser.parse_args([os.path.join(cmd_folder,'test-xsd-valid.xml')]))
+        eadator.validate(os.path.join(cmd_folder,'test-dtd-valid.xml'))
+        eadator.validate(os.path.join(cmd_folder,'test-xsd-valid.xml'))
 
         # test invalid instances
         self.assertRaises(SystemExit, eadator.main, parser.parse_args([os.path.join(cmd_folder,'test-dtd-invalid.xml')]))
