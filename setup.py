@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 setup(
     name = "eadator",
-    version = "0.3",
+    version = "0.3.2",
     packages = find_packages(),
 
     # Project uses reStructuredText, so ensure that the docutils get
