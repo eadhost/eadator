@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 setup(
     name = "eadator",
-    version = "0.3.2",
+    version = "0.3.3",
     packages = find_packages(),
 
     # Project uses reStructuredText, so ensure that the docutils get
@@ -22,7 +22,7 @@ setup(
     license = "BSD",
     keywords = "validate ead 2002 xml xsd dtd",
     url = "https://github.com/eadhost/eadator",   # project home page, if any
-
+    download_url = "https://github.com/eadhost/eadator/tarball/0.3.3",
     # could also include long_description, download_url, classifiers, etc.
     entry_points = {
         'console_scripts': [
