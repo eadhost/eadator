@@ -1,1 +1,1 @@
-recursive-include eadator/ents
+recursive-include eadator/ents *.*
