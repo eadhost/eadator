@@ -3,7 +3,9 @@ eadator
 
 EAD2002 (DTD or XSD) universal validator
 
-[![Build Status](https://travis-ci.org/eadhost/eadator.png)](https://travis-ci.org/eadhost/eadator) tested on python 2.5, 2.6, 2.7, 3.2, 3.3, pypy
+[![Build Status](https://travis-ci.org/eadhost/eadator.png)](https://travis-ci.org/eadhost/eadator) tested on python 2.6, 2.7, 3.2, 3.3, pypy 
+
+travis no longer tests python 2.5, but I think the library might work there.
 
 ```
 pip install eadator
@@ -11,6 +13,11 @@ pip install eadator
 or
 ```
 easy_install eadator
+```
+
+or
+```
+pip install git+git://github.com/eadhost/eadator.git
 ```
 
 Requires `libxml2` for `lxml` and validation.  
@@ -48,7 +55,8 @@ your own copies on the local filesystem or at URLs on the web.
 
 License
 -------
-Copyright © 2013, Regents of the University of California
+Copyright © 2014, Regents of the University of California
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without 

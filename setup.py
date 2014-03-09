@@ -2,16 +2,13 @@
 from setuptools import setup, find_packages
 setup(
     name = "eadator",
-    version = "0.3.3",
+    version = "0.3.4",
     packages = find_packages(),
-
-    # Project uses reStructuredText, so ensure that the docutils get
-    # installed or upgraded on the target machine
     install_requires = ['lxml', 'argparse'],
-
     package_data = {
-        # If any package contains *.txt or *.rst files, include them:
-        'eadator': ['ents/*.dtd', 'ents/*.xsd', 'ents/*.xml', 'ents/*.ent', 'ents/*.dcl' ],
+        'eadator': [
+            'ents/*.dtd', 'ents/*.xsd', 'ents/*.xml', 'ents/*.ent', 'ents/*.dcl'
+        ],
     },
     zip_safe = False,
 
@@ -22,7 +19,7 @@ setup(
     license = "BSD",
     keywords = "validate ead 2002 xml xsd dtd",
     url = "https://github.com/eadhost/eadator",   # project home page, if any
-    download_url = "https://github.com/eadhost/eadator/tarball/0.3.3",
+    download_url = "https://github.com/eadhost/eadator/tarball/0.3.4",
     # could also include long_description, download_url, classifiers, etc.
     entry_points = {
         'console_scripts': [
@@ -32,7 +29,7 @@ setup(
     test_suite = "tests.test_eadator"
 )
 
-# Copyright © 2013, Regents of the University of California
+# Copyright © 2014, Regents of the University of California
 # All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without
