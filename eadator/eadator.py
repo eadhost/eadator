@@ -27,7 +27,7 @@ def main(argv=None):
         pp(message)
 
     if argv.count:
-        print "Error count : %d" % error_count
+        print("Error count : %d" % error_count)
 
     if not valid:
         exit(1)
