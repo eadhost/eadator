@@ -16,14 +16,20 @@ def main(argv=None):
                         type=argparse.FileType('r'))
     parser.add_argument('--dtd', required=False, )
     parser.add_argument('--xsd', required=False, )
+    parser.add_argument('--count', action='store_true' )
 
     if argv is None:
         argv = parser.parse_args()
 
-    message, valid = validate(argv.eadfile[0], argv.dtd, argv.xsd)
+    message, valid, error_count = validate(argv.eadfile[0], argv.dtd, argv.xsd)
 
     if not valid:
         pp(message)
+
+    if argv.count:
+        print "Error count : %d" % error_count
+
+    if not valid:
         exit(1)
     
 def validate(eadfile, dtd=None, xsd=None):
@@ -48,12 +54,14 @@ def validate(eadfile, dtd=None, xsd=None):
         validator = etree.XMLSchema(etree.parse(xsd))
 
     message = None
+    error_count = 0
     valid = validator.validate(eadfile)
 
     if not valid:
         message = validator.error_log
+        error_count = len(message)
 
-    return message, valid
+    return message, valid, error_count
     
 
 # main() idiom for importing into REPL for debugging 
