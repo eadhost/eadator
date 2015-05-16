@@ -38,15 +38,15 @@ def main(argv=None):
         help='use alternate EAD3 RelaxNG schema',
     )
     parser.add_argument(
-        '--count',
+        '-v', '--verbose',
         action='store_true',
-        help='report total count of errors',
+        help='report ead type and total count of errors',
     )
 
     if argv is None:
         argv = parser.parse_args()
 
-    message, valid, error_count = validate(
+    message, valid, error_count, ead_type = validate(
         argv.eadfile[0],
         argv.dtd,
         argv.xsd,
@@ -56,8 +56,8 @@ def main(argv=None):
     if not valid:
         pp(message)
 
-    if argv.count:
-        print("Error count : %d" % error_count)
+    if argv.verbose:
+        print('Type: {1}, Error count: {0}'.format(error_count, ead_type))
 
     if not valid:
         exit(1)
@@ -95,10 +95,13 @@ def validate(eadfile, dtd=None, xsd=None, rng=None):
     # pick the correct validator
     if ead3ns:
         validator = etree.RelaxNG(etree.parse(rng))
+        ead_type = 'EAD3'
     elif ead2002ns:
         validator = etree.XMLSchema(etree.parse(xsd))
+        ead_type = 'EAD2002-XSD'
     else:
         validator = etree.DTD(dtd)
+        ead_type = 'EAD2002-DTD'
 
     valid = validator.validate(eadfile)
 
@@ -109,7 +112,7 @@ def validate(eadfile, dtd=None, xsd=None, rng=None):
         message = validator.error_log
         error_count = len(message)
 
-    return message, valid, error_count
+    return message, valid, error_count, ead_type
 
 
 # main() idiom for importing into REPL for debugging

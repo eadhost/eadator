@@ -36,19 +36,19 @@ or XSD validation should be used for validation.  There are other minor differen
 in xlink namespaces and in the letter case of xlink attributes.
 
 ```
-usage: eadator.py [-h] [--dtd DTD] [--xsd XSD] [--rng RNG] [--count] eadfile
+usage: eadator.py [-h] [--dtd DTD] [--xsd XSD] [--rng RNG] [-v] eadfile
 
 EAD validator
 
 positional arguments:
-  eadfile     EAD XML file to check
+  eadfile        EAD XML file to check
 
 optional arguments:
-  -h, --help  show this help message and exit
-  --dtd DTD   use alternate EAD2002 DTD
-  --xsd XSD   use alternate EAD2002 XSD
-  --rng RNG   use alternate EAD3 RelaxNG schema
-  --count     report total count of errors
+  -h, --help     show this help message and exit
+  --dtd DTD      use alternate EAD2002 DTD
+  --xsd XSD      use alternate EAD2002 XSD
+  --rng RNG      use alternate EAD3 RelaxNG schema
+  -v, --verbose  report ead type and total count of errors
 ```
 
 Comes with default `ead.dtd`, `ead.xsd`, and `ead3.rng` but you can
