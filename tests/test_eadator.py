@@ -25,34 +25,28 @@ class TestEadator(unittest.TestCase):
         eadator.main(parser.parse_args([os.path.join(cmd_folder,'test-xsd-valid.xml')]))
         eadator.main(parser.parse_args([os.path.join(cmd_folder,'S.0001_valid.xml')]))
 
-        message, valid, error_count, ead_type = eadator.validate(os.path.join(cmd_folder,'test-dtd-valid.xml'))
-        self.assertTrue(valid)
-        self.assertEqual(0,error_count)
+        res = eadator.validate(os.path.join(cmd_folder,'test-dtd-valid.xml'))
+        self.assertEqual(0,res.error_count)
 
-        message, valid, error_count, ead_type = eadator.validate(os.path.join(cmd_folder,'test-xsd-valid.xml'))
-        self.assertTrue(valid)
-        self.assertEqual(0,error_count)
+        res = eadator.validate(os.path.join(cmd_folder,'test-xsd-valid.xml'))
+        self.assertEqual(0,res.error_count)
 
-        message, valid, error_count, ead_type = eadator.validate(os.path.join(cmd_folder,'S.0001_valid.xml'))
-        self.assertTrue(valid)
-        self.assertEqual(0,error_count)
+        res = eadator.validate(os.path.join(cmd_folder,'S.0001_valid.xml'))
+        self.assertEqual(0,res.error_count)
 
         # test invalid instances
         self.assertRaises(SystemExit, eadator.main, parser.parse_args([os.path.join(cmd_folder,'test-dtd-invalid.xml')]))
         self.assertRaises(SystemExit, eadator.main, parser.parse_args([os.path.join(cmd_folder,'test-dtd-invalid.xml')]))
         self.assertRaises(SystemExit, eadator.main, parser.parse_args([os.path.join(cmd_folder,'S.0001_invalid.xml')]))
 
-        message, valid, error_count, ead_type = eadator.validate(os.path.join(cmd_folder,'test-dtd-invalid.xml'))
-        self.assertFalse(valid)
-        self.assertEqual(1,error_count)
+        res = eadator.validate(os.path.join(cmd_folder,'test-dtd-invalid.xml'))
+        self.assertEqual(1,res.error_count)
 
-        message, valid, error_count, ead_type = eadator.validate(os.path.join(cmd_folder,'test-xsd-invalid.xml'))
-        self.assertFalse(valid)
-        self.assertEqual(1,error_count)
+        res = eadator.validate(os.path.join(cmd_folder,'test-xsd-invalid.xml'))
+        self.assertEqual(1,res.error_count)
 
-        message, valid, error_count, ead_type = eadator.validate(os.path.join(cmd_folder,'S.0001_invalid.xml'))
-        self.assertFalse(valid)
-        self.assertEqual(1,error_count)
+        res = eadator.validate(os.path.join(cmd_folder,'S.0001_invalid.xml'))
+        self.assertEqual(1,res.error_count)
 
 
 if __name__ == '__main__':

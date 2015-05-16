@@ -6,6 +6,7 @@
 import inspect
 import os
 import sys
+from collections import namedtuple
 from pprint import pprint as pp
 
 import argparse
@@ -46,24 +47,28 @@ def main(argv=None):
     if argv is None:
         argv = parser.parse_args()
 
-    message, valid, error_count, ead_type = validate(
-        argv.eadfile[0],
-        argv.dtd,
-        argv.xsd,
-        argv.rng,
-    )
+    result = validate(argv.eadfile[0], argv.dtd, argv.xsd, argv.rng)
 
-    if not valid:
-        pp(message)
+    if result.error_count:
+        pp(result.error_log)
 
     if argv.verbose:
-        print('Type: {1}, Error count: {0}'.format(error_count, ead_type))
+        print('Type: {1}, Error count: {0}'.format(
+            result.error_count,
+            result.validated_by
+        ))
 
-    if not valid:
+    if result.error_count:
         exit(1)
 
 
 def validate(eadfile, dtd=None, xsd=None, rng=None):
+    # named tuple to hold results
+    ValidationResults = namedtuple(
+        'ValidationResults',
+        'validated_by error_count error_log',
+    )
+
     # Info: http://stackoverflow.com/a/6098238/1763984
     # realpath() with make your script run, even if you symlink it :)
     cmd_folder = os.path.realpath(
@@ -106,13 +111,17 @@ def validate(eadfile, dtd=None, xsd=None, rng=None):
     valid = validator.validate(eadfile)
 
     if valid:
-        message = None
-        error_count = 0
+        return ValidationResults(
+            validated_by=ead_type,
+            error_count=0,
+            error_log=None
+        )
     else:
-        message = validator.error_log
-        error_count = len(message)
-
-    return message, valid, error_count, ead_type
+        return ValidationResults(
+            validated_by=ead_type,
+            error_count=len(validator.error_log),
+            error_log=validator.error_log
+        )
 
 
 # main() idiom for importing into REPL for debugging
