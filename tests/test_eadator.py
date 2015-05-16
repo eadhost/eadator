@@ -17,37 +17,42 @@ class TestEadator(unittest.TestCase):
                             type=argparse.FileType('r'))
         parser.add_argument('--dtd', default="%s/ents/ead.dtd" % lib_folder, required=False, )
         parser.add_argument('--xsd', default="%s/ents/ead.xsd" % lib_folder, required=False, )
-        parser.add_argument('--count', action='store_true' )
+        parser.add_argument('--rng', default="%s/ents/ead3.rng" % lib_folder, required=False, )
+        parser.add_argument('--verbose', action='store_true' )
 
         # test valid instances
         eadator.main(parser.parse_args([os.path.join(cmd_folder,'test-dtd-valid.xml')]))
         eadator.main(parser.parse_args([os.path.join(cmd_folder,'test-xsd-valid.xml')]))
+        eadator.main(parser.parse_args([os.path.join(cmd_folder,'S.0001_valid.xml')]))
 
-        message, valid, error_count = eadator.validate(os.path.join(cmd_folder,'test-dtd-valid.xml'))
-        self.assertTrue(valid)
-        self.assertEqual(0,error_count)
+        res = eadator.validate(os.path.join(cmd_folder,'test-dtd-valid.xml'))
+        self.assertEqual(0,res.error_count)
 
-        message, valid, error_count = eadator.validate(os.path.join(cmd_folder,'test-xsd-valid.xml'))
-        self.assertTrue(valid)
-        self.assertEqual(0,error_count)
+        res = eadator.validate(os.path.join(cmd_folder,'test-xsd-valid.xml'))
+        self.assertEqual(0,res.error_count)
+
+        res = eadator.validate(os.path.join(cmd_folder,'S.0001_valid.xml'))
+        self.assertEqual(0,res.error_count)
 
         # test invalid instances
         self.assertRaises(SystemExit, eadator.main, parser.parse_args([os.path.join(cmd_folder,'test-dtd-invalid.xml')]))
         self.assertRaises(SystemExit, eadator.main, parser.parse_args([os.path.join(cmd_folder,'test-dtd-invalid.xml')]))
+        self.assertRaises(SystemExit, eadator.main, parser.parse_args([os.path.join(cmd_folder,'S.0001_invalid.xml')]))
 
-        message, valid, error_count = eadator.validate(os.path.join(cmd_folder,'test-dtd-invalid.xml'))
-        self.assertFalse(valid)
-        self.assertEqual(1,error_count)
+        res = eadator.validate(os.path.join(cmd_folder,'test-dtd-invalid.xml'))
+        self.assertEqual(1,res.error_count)
 
-        message, valid, error_count = eadator.validate(os.path.join(cmd_folder,'test-xsd-invalid.xml'))
-        self.assertFalse(valid)
-        self.assertEqual(1,error_count)
+        res = eadator.validate(os.path.join(cmd_folder,'test-xsd-invalid.xml'))
+        self.assertEqual(1,res.error_count)
+
+        res = eadator.validate(os.path.join(cmd_folder,'S.0001_invalid.xml'))
+        self.assertEqual(1,res.error_count)
 
 
 if __name__ == '__main__':
     unittest.main()
 
-# Copyright © 2013, Regents of the University of California
+# Copyright © 2015, Regents of the University of California
 # All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without
