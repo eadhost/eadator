@@ -20,7 +20,7 @@ setup(
     # metadata for upload to PyPI
     author = "Brian Tingle",
     author_email = "brian.tingle.cdlib.org@gmail.com",
-    description = "EAD2002 (DTD or XSD) universal validator",
+    description = "EAD2002 (DTD or XSD) and EAD3 (RNG) universal validator",
     license = "BSD",
     keywords = "validate ead 2002 xml xsd dtd",
     url = "https://github.com/eadhost/eadator",   # project home page, if any

@@ -7,17 +7,12 @@ EAD2002 (DTD or XSD) universal validator
 
 travis no longer tests python 2.5, but I think the library might work there.
 
-```
-pip install eadator
-```
-or
-```
-easy_install eadator
-```
+This branch will stay open till EAD 3 is finalized.
 
-or
+see also [pull request #4](https://github.com/eadhost/eadator/pull/4)
+
 ```
-pip install git+git://github.com/eadhost/eadator.git
+pip install https://github.com/eadhost/eadator/tarball/1.0.0-a0
 ```
 
 Requires `libxml2` for `lxml` and validation.  
@@ -36,7 +31,7 @@ or XSD validation should be used for validation.  There are other minor differen
 in xlink namespaces and in the letter case of xlink attributes.
 
 ```
-usage: eadator.py [-h] [--dtd DTD] [--xsd XSD] [--rng RNG] [-v] eadfile
+usage: eadator [-h] [--dtd DTD] [--xsd XSD] [--rng RNG] [-v] eadfile
 
 EAD validator
 
