@@ -16,12 +16,13 @@ def main(argv=None):
                         type=argparse.FileType('r'))
     parser.add_argument('--dtd', required=False, )
     parser.add_argument('--xsd', required=False, )
+    parser.add_argument('--rng', required=False, )
     parser.add_argument('--count', action='store_true' )
 
     if argv is None:
         argv = parser.parse_args()
 
-    message, valid, error_count = validate(argv.eadfile[0], argv.dtd, argv.xsd)
+    message, valid, error_count = validate(argv.eadfile[0], argv.dtd, argv.xsd, argv.rng)
 
     if not valid:
         pp(message)
@@ -32,7 +33,7 @@ def main(argv=None):
     if not valid:
         exit(1)
     
-def validate(eadfile, dtd=None, xsd=None):
+def validate(eadfile, dtd=None, xsd=None, rng=None):
     # Info: http://stackoverflow.com/a/6098238/1763984
     # realpath() with make your script run, even if you symlink it :)
     cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
@@ -40,6 +41,7 @@ def validate(eadfile, dtd=None, xsd=None):
     eadfile = etree.parse(eadfile)
 
     ead2002ns = eadfile.xpath("//*[namespace-uri()='urn:isbn:1-931666-22-9']")
+    ead3ns = eadfile.xpath("//*[namespace-uri()='http://ead3.archivists.org/schema/']")
 
     validator = None
 
@@ -47,8 +49,12 @@ def validate(eadfile, dtd=None, xsd=None):
         dtd = "%s/ents/ead.dtd" % cmd_folder
     if not xsd:
         xsd = "%s/ents/ead.xsd" % cmd_folder
+    if not rng:
+        rng = "%s/ents/ead3.rng" % cmd_folder
 
-    if not ead2002ns:		# looks like DTD style
+    if ead3ns:
+        validator = etree.RelaxNG(etree.parse(rng))
+    elif not ead2002ns:		# looks like DTD style
         validator = etree.DTD(dtd)
     else:			# looks like XSD style
         validator = etree.XMLSchema(etree.parse(xsd))

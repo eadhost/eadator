@@ -22,8 +22,8 @@ pip install git+git://github.com/eadhost/eadator.git
 
 Requires `libxml2` for `lxml` and validation.  
 
-This utility performs a universial EAD2002 validation.  It exits
-EXIT_SUCCESS (0)  with no output if the file is a valid EAD2002.
+This utility performs a universial EAD validation.  It exits
+EXIT_SUCCESS (0)  with no output if the file is a valid EAD2002 or EAD 3.
 Relevent validation error messages are displaied and the scripts
 exits EXIT_FAILURE (1) if the file is not valid with respect to its
 intended type (XSD or DTD).
@@ -36,7 +36,7 @@ or XSD validation should be used for validation.  There are other minor differen
 in xlink namespaces and in the letter case of xlink attributes.
 
 ```
-usage: eadator [-h] [--dtd DTD] [--xsd XSD] eadfile
+usage: eadator.py [-h] [--dtd DTD] [--xsd XSD] [--rng RNG] [--count] eadfile
 
 EAD validator
 
@@ -45,17 +45,20 @@ positional arguments:
 
 optional arguments:
   -h, --help  show this help message and exit
-  --dtd DTD
-  --xsd XSD
+  --dtd DTD   use alternate EAD2002 DTD
+  --xsd XSD   use alternate EAD2002 XSD
+  --rng RNG   use alternate EAD3 RelaxNG schema
+  --count     report total count of errors
 ```
 
-Comes with default `ead.dtd` and `ead.xsd`, but you can point at
-your own copies on the local filesystem or at URLs on the web.
+Comes with default `ead.dtd`, `ead.xsd`, and `ead3.rng` but you can
+point at your own copies on the local filesystem or at URLs on the
+web.
 
 
 License
 -------
-Copyright © 2014, Regents of the University of California
+Copyright © 2015, Regents of the University of California
 
 All rights reserved.
 
